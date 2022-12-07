@@ -11,15 +11,15 @@ source:
   sha256: 16199f5b3ddfb69e0df2f52ae4c76aedbfec823462349dabb21a1b2e0a2b65e9
 
 build:
-  skip: True #[py<37]
+  skip: True  # [py<37]
   number: 0
-  noarch: python
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   host:
     - python
     - pip
+    - pdm-pep517 >=1.0.0
     - setuptools
     - wheel
   run:
@@ -30,6 +30,10 @@ requirements:
 test:
   imports:
     - flask_sqlalchemy
+  requires:
+    - pip
+  commands:
+    - pip check
 
 about:
   home: https://github.com/pallets/flask-sqlalchemy
