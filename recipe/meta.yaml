@@ -1,5 +1,5 @@
 {% set name = "Flask-SQLAlchemy" %}
-{% set version = "2.5.1" %}
+{% set version = "3.0.2" %}
 
 
 package:
@@ -8,25 +8,32 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 2bda44b43e7cacb15d4e05ff3cc1f8bc97936cc464623424102bfc2c35e95912
+  sha256: 16199f5b3ddfb69e0df2f52ae4c76aedbfec823462349dabb21a1b2e0a2b65e9
 
 build:
+  skip: True  # [py<37]
   number: 0
-  noarch: python
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   host:
     - python
     - pip
+    - pdm-pep517 >=1.0.0
+    - setuptools
+    - wheel
   run:
     - python
-    - flask >=1.0.4
-    - sqlalchemy >=1.2
+    - flask >=2.2
+    - sqlalchemy >=1.4.18
 
 test:
   imports:
     - flask_sqlalchemy
+  requires:
+    - pip
+  commands:
+    - pip check
 
 about:
   home: https://github.com/pallets/flask-sqlalchemy
@@ -34,6 +41,10 @@ about:
   license_family: BSD
   license_file: LICENSE.rst
   summary: Adds SQLAlchemy support to your Flask application
+  description: |
+    Flask-SQLAlchemy is an extension for Flask that adds support for SQLAlchemy to your application. 
+    It aims to simplify using SQLAlchemy with Flask by providing useful defaults and extra helpers 
+    that make it easier to accomplish common tasks.
   dev_url: https://github.com/pallets/flask-sqlalchemy
   doc_url: https://flask-sqlalchemy.palletsprojects.com
 
