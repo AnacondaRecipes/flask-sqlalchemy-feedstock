@@ -23,7 +23,7 @@ requirements:
   run:
     - python
     - flask >=2.2.5
-    - sqlalchemy >=1.4.18
+    - sqlalchemy >=2.0.16
 
 test:
   imports:
