@@ -11,7 +11,7 @@ source:
   sha256: e4b68bb881802dda1a7d878b2fc84c06d1ee57fb40b874d3dc97dabfa36b8312
 
 build:
-  skip: True  # [py<37]
+  skip: True  # [py<38]
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
@@ -19,11 +19,10 @@ requirements:
   host:
     - python
     - pip
-    - pdm-pep517 >=1.0.0
-    - flit-core
+    - flit-core <4
   run:
     - python
-    - flask >=2.2
+    - flask >=2.2.5
     - sqlalchemy >=1.4.18
 
 test:
