@@ -3,7 +3,7 @@
 {% set file_name = "flask_sqlalchemy" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
@@ -12,7 +12,7 @@ source:
 
 build:
   skip: True  # [py<38]
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
